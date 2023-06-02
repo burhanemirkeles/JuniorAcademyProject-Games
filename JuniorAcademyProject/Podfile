@@ -8,6 +8,7 @@ target 'JuniorAcademyProject' do
   # Pods for JuniorAcademyProject
 pod 'Carbon'
 pod 'Alamofire'
-pod 'SwiftLint' 
+pod 'SwiftLint'
+pod 'SnapKit'
 
 end
