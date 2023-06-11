@@ -12,7 +12,7 @@ import UIKit
 
 class GamesView: UIView, Component {
 
-  let labelTitle: UILabel = UILabel()
+  let navigationBarLabel: UILabel = UILabel()
   let navigationBar = UINavigationBar()
 
   let searchBar = UISearchBar()
@@ -89,7 +89,7 @@ class GamesView: UIView, Component {
       make.top.equalToSuperview()
       make.right.equalToSuperview()
     }
-    labelTitle.snp.makeConstraints{ (make) in
+    navigationBarLabel.snp.makeConstraints{ (make) in
       make.top.equalTo(navigationBar).offset(Const.LabelTitleConstraints.topOffset)
       make.left.equalToSuperview().offset(Const.LabelTitleConstraints.leftOffset)
       make.right.equalToSuperview().offset(Const.LabelTitleConstraints.rightOffset)
@@ -111,7 +111,7 @@ class GamesView: UIView, Component {
 
   func setupViews () {
     self.addSubview(navigationBar)
-    navigationBar.addSubview(labelTitle)
+    navigationBar.addSubview(navigationBarLabel)
     self.addSubview(stackView)
     stackView.addArrangedSubview(searchBar)
 
@@ -120,16 +120,16 @@ class GamesView: UIView, Component {
     navigationBar.topItem?.title = Const.navigationBarTopItemTitle
     navigationBar.backgroundColor = Const.navigationBarBackgroundColor
 
-    labelTitle.textColor = .black
-    labelTitle.textAlignment = .left
-    labelTitle.numberOfLines = .zero
-    labelTitle.lineBreakMode = .byWordWrapping
-    labelTitle.textColor = .black
-    labelTitle.adjustsFontSizeToFitWidth = true
-    labelTitle.minimumScaleFactor = Const.labelTitleMinScaleFactor
-    labelTitle.baselineAdjustment = .alignCenters
-    labelTitle.text = Const.labelText
-    labelTitle.font = Const.labelFont
+    navigationBarLabel.textColor = .black
+    navigationBarLabel.textAlignment = .left
+    navigationBarLabel.numberOfLines = .zero
+    navigationBarLabel.lineBreakMode = .byWordWrapping
+    navigationBarLabel.textColor = .black
+    navigationBarLabel.adjustsFontSizeToFitWidth = true
+    navigationBarLabel.minimumScaleFactor = Const.labelTitleMinScaleFactor
+    navigationBarLabel.baselineAdjustment = .alignCenters
+    navigationBarLabel.text = Const.labelText
+    navigationBarLabel.font = Const.labelFont
 
     stackView.axis = .vertical
     stackView.contentMode = .scaleToFill
