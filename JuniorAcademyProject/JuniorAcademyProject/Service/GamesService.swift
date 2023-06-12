@@ -13,7 +13,7 @@ struct AlamofireService {
     static let scheme: String = "https"
     static let host: String = "api.rawg.io"
     static let path: String = "/api/games"
-    static let queryItems: [URLQueryItem] = [URLQueryItem(name: "key", value: "99754714091e4d8d82257b2bd4825d84")]
+    static let queryItems: [URLQueryItem] = [URLQueryItem(name: "key", value: "63e3a77f68f448ffb54161964463dbe2")]
 
     static let timeoutInterval: TimeInterval = 120.0
 
