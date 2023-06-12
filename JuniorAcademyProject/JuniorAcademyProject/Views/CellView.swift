@@ -24,6 +24,8 @@ class CellView: UIView {
   override init(frame: CGRect) {
     self.id = 0
     super.init(frame: frame)
+    configureViews()
+    setupConstraints()
 
   }
 
@@ -36,7 +38,7 @@ class CellView: UIView {
     addSubview(metacriticLabel)
     addSubview(metaScoreLabel)
     addSubview(genreTitleLabel)
-
+    addSubview(imageView)
   }
 
   private func setupConstraints() {
@@ -54,8 +56,7 @@ class CellView: UIView {
 
     metaScoreLabel.snp.makeConstraints { make in
         make.top.equalTo(metacriticLabel)
-        make.right.equalTo(-121)
-        make.left.equalTo(228)
+        make.left.equalTo(metacriticLabel.snp.right).offset(2)
         make.bottom.equalTo(metacriticLabel)
     }
 
@@ -63,6 +64,15 @@ class CellView: UIView {
         make.top.equalTo(metacriticLabel.snp.bottom).offset(8)
         make.right.equalTo(-16)
         make.left.equalTo(152)
+    }
+
+    imageView.snp.makeConstraints { make in
+      make.top.equalToSuperview().offset(16)
+      make.left.equalTo(16)
+      make.right.equalTo(titleLabel.snp.left).offset(-16)
+      make.bottom.equalToSuperview().offset(16)
+      make.height.equalTo(104)
+      make.width.equalTo(120)
     }
 
 
