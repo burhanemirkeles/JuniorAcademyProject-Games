@@ -14,6 +14,7 @@ class GamesViewModel {
   var games: [Game] = []
   var gameDetail: GameDetail?
   var nextPage: String?
+  var minimumCharacterLimitForSearch = 3
 
   func fetchGames() {
       AlamofireService.shared.requestGetGames { result in

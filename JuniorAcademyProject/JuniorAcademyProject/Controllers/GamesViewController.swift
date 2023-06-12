@@ -14,6 +14,7 @@ class GamesViewController: UIViewController {
   let gamesView = GamesView()
   private let tableView: UITableView = UITableView()
   var viewModel: GamesViewModel = GamesViewModel()
+  var isTypingAllowed: Bool = true
 
   private let renderer = Renderer(adapter: TableViewAdapter(),
                                   updater: UITableViewUpdater())
@@ -28,7 +29,8 @@ class GamesViewController: UIViewController {
     viewModel.fetchGames()
 
     renderer.target = tableView
-    
+
+    gamesView.searchBar.delegate = self
     configureTableView()
 
   }
@@ -82,6 +84,68 @@ extension GamesViewController: GamesViewModelDelegate {
   func didFetchMoreGames() { render() }
 
   func getGameDetail() { }
+
+}
+
+// MARK: SearchBarDelegate
+extension GamesViewController: UISearchBarDelegate {
+  private static let minimumSearchLimit = 3
+
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    viewModel.games.removeAll()
+
+    if let searchText = searchBar.text {
+      if searchText.count >= viewModel.minimumCharacterLimitForSearch {
+        viewModel.searchGames(text: searchText)
+      }
+    }
+    searchBar.resignFirstResponder()
+  }
+
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {//cancel butona tıkladığımda
+    searchBar.text = ""
+    searchBar.resignFirstResponder()
+    searchBar.showsCancelButton = false
+    viewModel.games.removeAll()
+    viewModel.fetchGames()
+    didFetchGamesData()
+  }
+
+  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {//Tıkladığım anda
+    searchBar.showsCancelButton = true
+    viewModel.games.removeAll()
+    render()
+  }
+
+  func searchbar(_ searchBar: UISearchBar) {
+    viewModel.games.removeAll()
+    render()
+  }
+  
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    viewModel.games.removeAll()
+
+    if !isTypingAllowed {
+      searchBar.text = searchText
+      if searchText.count >= viewModel.minimumCharacterLimitForSearch {
+        viewModel.searchGames(text: searchText)
+      }
+    }
+  }
+
+  func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+
+    if !isTypingAllowed {
+      return false
+    }
+
+    isTypingAllowed = false
+
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+      self.isTypingAllowed = true
+    }
+    return true
+  }
 
 }
 
