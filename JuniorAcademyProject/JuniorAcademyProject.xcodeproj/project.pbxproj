@@ -41,6 +41,8 @@
 		75CB5FD92A378FE400C67527 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75CB5FCD2A378FE400C67527 /* Roboto-BlackItalic.ttf */; };
 		75CB5FDA2A378FE400C67527 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75CB5FCE2A378FE400C67527 /* Roboto-BoldItalic.ttf */; };
 		75CB5FDB2A378FE400C67527 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75CB5FCF2A378FE400C67527 /* Roboto-Black.ttf */; };
+		75CB5FDE2A3792CE00C67527 /* GamesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CB5FDD2A3792CE00C67527 /* GamesViewModel.swift */; };
+		75CB5FE12A37959900C67527 /* TableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CB5FE02A37959900C67527 /* TableViewAdapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +83,8 @@
 		75CB5FCD2A378FE400C67527 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
 		75CB5FCE2A378FE400C67527 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
 		75CB5FCF2A378FE400C67527 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		75CB5FDD2A3792CE00C67527 /* GamesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewModel.swift; sourceTree = "<group>"; };
+		75CB5FE02A37959900C67527 /* TableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAdapter.swift; sourceTree = "<group>"; };
 		9EAE99A6ED246F7E524FD394 /* Pods_JuniorAcademyProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JuniorAcademyProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -117,6 +121,8 @@
 		756884DA2A24EEEA004A29D4 /* JuniorAcademyProject */ = {
 			isa = PBXGroup;
 			children = (
+				75CB5FDF2A37957400C67527 /* Adapters */,
+				75CB5FDC2A3792BB00C67527 /* ViewModels */,
 				75CB5FBF2A37258900C67527 /* Fonts */,
 				75CB5FB62A364BF100C67527 /* Controllers */,
 				75CB5FA92A36272C00C67527 /* Views */,
@@ -193,6 +199,22 @@
 				75CB5FC72A378FE400C67527 /* Roboto-ThinItalic.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		75CB5FDC2A3792BB00C67527 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				75CB5FDD2A3792CE00C67527 /* GamesViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		75CB5FDF2A37957400C67527 /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				75CB5FE02A37959900C67527 /* TableViewAdapter.swift */,
+			);
+			path = Adapters;
 			sourceTree = "<group>";
 		};
 		874CB707199D6302EB66767C /* Frameworks */ = {
@@ -352,6 +374,8 @@
 				75CB5FBE2A371F1800C67527 /* CellItem.swift in Sources */,
 				75CB5FA82A3623F000C67527 /* NetworkError.swift in Sources */,
 				75CB5FBA2A3707F300C67527 /* FavoritesViewController.swift in Sources */,
+				75CB5FE12A37959900C67527 /* TableViewAdapter.swift in Sources */,
+				75CB5FDE2A3792CE00C67527 /* GamesViewModel.swift in Sources */,
 				75CB5FA62A3623D600C67527 /* GameResponse.swift in Sources */,
 				75CB5F9D2A361F5E00C67527 /* GamesService.swift in Sources */,
 				75CB5FB32A36498E00C67527 /* LoadingView.swift in Sources */,

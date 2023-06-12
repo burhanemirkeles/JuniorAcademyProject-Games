@@ -7,21 +7,23 @@
 
 import Foundation
 import Carbon
+import Kingfisher
 
 struct CellItem: IdentifiableComponent {
+
+  func shouldContentUpdate(with next: CellItem) -> Bool {
+    return true
+  }
 
   var game: Game
   var id: String {
     game.name
   }
 
-  func renderContent() -> CellView {
-    return CellView()
-  }
-
   func render(in content: CellView) {
     content.titleLabel.text = game.name
-    content.metacriticLabel.text = "metacritic:"
+    content.metacriticLabel.text = "metacritic: "
+    content.metacriticLabel.font = UIFont(name: "Roboto-Medium", size: 14.0)
     if let metacritic = game.metacritic {
         content.metaScoreLabel.text = String(metacritic)
     }
@@ -34,8 +36,18 @@ struct CellItem: IdentifiableComponent {
         } else {
             content.genreTitleLabel.text = "N/A"
         }
+      content.genreTitleLabel.font = UIFont(name: "Roboto-Thin", size: 12.0)
     }
 
+    if let gameImage = game.gameImage, let url = URL(string: gameImage) {
+        let resizeProcessor = ResizingImageProcessor(referenceSize: CGSize(width: 120, height: 104))
+        let imageLoadingOptions: KingfisherOptionsInfo = [
+            .processor(resizeProcessor),
+            .scaleFactor(UIScreen.main.scale),
+            .transition(.fade(0.2))
+        ]
+        content.imageView.kf.setImage(with: url, options: imageLoadingOptions)
+    }
 
     content.id = game.id
 }
@@ -43,9 +55,23 @@ struct CellItem: IdentifiableComponent {
   func referenceSize(in bounds: CGRect) -> CGSize? {
     return CGSize(width: bounds.width, height: 136)
   }
-
-  func shouldContentUpdate(with next: CellItem) -> Bool {
-    return false
+  
+  func renderContent() -> CellView {
+    return CellView()
   }
 
+}
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
 }

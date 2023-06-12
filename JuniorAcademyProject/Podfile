@@ -10,5 +10,7 @@ pod 'Carbon'
 pod 'Alamofire'
 pod 'SwiftLint'
 pod 'SnapKit'
+pod 'URLImage'
+pod 'Kingfisher', '~> 7.0'
 
 end
