@@ -11,7 +11,7 @@ import SnapKit
 import Carbon
 
 
-class CellView: UIView {
+final class CellView: UIView {
   var id: Int
   var titleLabel: UILabel = UILabel()
   var metacriticLabel: UILabel = UILabel()
@@ -26,11 +26,29 @@ class CellView: UIView {
     super.init(frame: frame)
     configureViews()
     setupConstraints()
-
+    addTapGesture()
   }
 
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  func addTapGesture() {
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
+    self.isUserInteractionEnabled = true
+    self.addGestureRecognizer(tapGesture)
+  }
+
+  @objc func cellTapped() {
+    self.delegate?.didSelect()
+
+    let gameDetailViewController = GameDetailViewController()
+
+    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
+      gameDetailViewController.gameId = self.id
+      gameDetailViewController.getGameDetail()
+      navigationController.pushViewController(gameDetailViewController, animated: true)
+    }
   }
 
   private func configureViews() {
@@ -74,11 +92,7 @@ class CellView: UIView {
       make.height.equalTo(104)
       make.width.equalTo(120)
     }
-
-
   }
-
-
 }
 
 protocol CellViewDelegate: AnyObject {
