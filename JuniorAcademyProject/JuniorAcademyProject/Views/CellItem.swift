@@ -22,10 +22,12 @@ struct CellItem: IdentifiableComponent {
 
   func render(in content: CellView) {
     content.titleLabel.text = game.name
+    content.titleLabel.font = UIFont(name: "Roboto-Bold", size: 20)
     content.metacriticLabel.text = "metacritic: "
     content.metacriticLabel.font = UIFont(name: "Roboto-Medium", size: 14.0)
     if let metacritic = game.metacritic {
         content.metaScoreLabel.text = String(metacritic)
+        content.metaScoreLabel.textColor = .red
     }
 
     if let genres = game.genres {

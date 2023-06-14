@@ -81,8 +81,6 @@ struct AlamofireService {
     urlComponents.path = "\(Const.path)/\(gameID)"
     urlComponents.queryItems = Const.queryItems
 
-    print("AlamofireService --> \(urlComponents.url!.absoluteString) adresine istek atılıyor...")
-
     guard let url = urlComponents.url else { return }
 
     let request = self.getDefaultRequest(url: url.absoluteString, method: .get)
